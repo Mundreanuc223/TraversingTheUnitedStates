@@ -3,7 +3,7 @@ from AdjacencyList import AdjacencyListGraph
 from Matrix import MatrixGraph
 from CityData import City
 
-
+#main file that showcases some of the function/class implementations (can be replaced entirely)
 if __name__ == '__main__':
 
     #start time for adjacency list method
