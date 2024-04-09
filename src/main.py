@@ -10,7 +10,7 @@ if __name__ == '__main__':
     startTime1 = time.time()
 
     #testing creating city objects manually
-    city1 = City("Gainesville", 13000)
+    city1 = City("Gainesville", 15000)
     city2 = City("Tampa", 30000)
     city3 = City("Orlando", 50000)
 
