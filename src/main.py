@@ -6,6 +6,7 @@ from CityData import City
 
 if __name__ == '__main__':
 
+    #start time for adjacency list method
     startTime1 = time.time()
 
     #testing creating city objects manually
@@ -26,9 +27,10 @@ if __name__ == '__main__':
 
     print("Adjacency List Excecution Time: ", time.time() - startTime1, " seconds")
 
+    #start time for matrix method
+    startTime2 = time.time()
 
     #creates a matrix graph
-    startTime2 = time.time()
     sim2 = MatrixGraph()
 
 
