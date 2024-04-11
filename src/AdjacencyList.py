@@ -1,14 +1,13 @@
 
-
 class AdjacencyListGraph:
 
     def __init__(self):
         self.adjacencyList = {}
         self.simThreshold = 0
+        self.numCities = 0
 
     #adds edge between city 1 and 2
     def insertEdge(self, city1, city2):
-
         simScore = self.calculateSimilarity(city1,city2)
         if(simScore > self.simThreshold): #if the similarity between the two has substance, add an edge
 
