@@ -23,14 +23,13 @@ if __name__ == '__main__':
     arr1 = sim1.getAdjacent(city1)
     print(city1.name + "'s", "Neighbors:")
     for city in arr1:
-        print(city.name)
+        print(city[0].name)
 
-    print("Adjacency List Excecution Time: ", time.time() - startTime1, " seconds", end='\n')
+    print("Adjacency List Excecution Time: ", time.time() - startTime1, " seconds" + '\n')
 
     #start time for matrix method
     startTime2 = time.time()
 
-    print('\n')
 
     #creates a matrix graph
     sim2 = MatrixGraph()
@@ -40,8 +39,7 @@ if __name__ == '__main__':
     print(city1.name + "'s", "Neighbors:")
     arr2 = sim2.getAdjacent(city1)
     for city in arr2:
-        print(city.name)
-
+        print(city[0].name)
 
 
     print("Matrix Execution Time: ", time.time() - startTime2, " seconds")

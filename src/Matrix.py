@@ -11,6 +11,7 @@ class MatrixGraph:
         index = len(self.cityIndex)
         self.cityIndex[city.name] = index #maps city to the next open index in the matrix
         self.indexToCity[index] = city #maps index to city object
+        self.numCities += 1
 
         self.matrix.append([0] * len(self.matrix))  # adds another row to the matrix
 
@@ -30,19 +31,31 @@ class MatrixGraph:
         self.matrix[city1Index][city2Index] = simScore
         self.matrix[city2Index][city1Index] = simScore
 
+    # array of city's neighbors (tuple of object and simscore)
     def getAdjacent(self, city):
         neighbors = []
         cityIndex = self.cityIndex[city.name]
         for i in range(len(self.cityIndex)):
             if self.matrix[cityIndex][i] > 0:
-                neighbors.append(self.indexToCity[i])
+                neighbors.append((self.indexToCity[i], self.matrix[cityIndex][i]))
         return neighbors
-
 
     #same as similarity calc for adjacency list
     def calculateSimilarity(self, city1, city2):
         simScore = 1
         return simScore
+
+    #returns top 5 most similiar cities (as tuple of objects and simscore)
+    def topFive(self, city):
+        temp = self.getAdjacent(city)
+        temp.sort(key=lambda x: x[1], reverse=True)
+        five = []
+        for i in range(5):
+            five.append(temp[i])
+        return five
+
+    def setNumCities(self):
+        self.numCities = len(self.cityIndex)
 
 
 
