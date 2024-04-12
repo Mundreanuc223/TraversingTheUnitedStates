@@ -54,8 +54,6 @@ class MatrixGraph:
             five.append(temp[i])
         return five
 
-    def setNumCities(self):
-        self.numCities = len(self.cityIndex)
 
 
 
