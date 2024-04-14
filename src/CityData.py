@@ -1,3 +1,4 @@
+import csv
 
 class City:
 
@@ -5,6 +6,9 @@ class City:
         self.name = name
         self.population = population
 
-
-    def readData(self):
-        return
+    def readCSV(self, file):
+        with open(file, 'r') as csvFile:
+            read = csv.reader(csvFile)  #turns the csv into an object that can be iterated
+        for line in read: #each loop gets a line from the CSV as an array
+            print(line[0])
+            print(line[1])
