@@ -2,7 +2,7 @@ import csv
 
 class City:
 
-    def __init__(self, name, state, population, mean_household_inc, area_water, area_land, latitude):
+    def __init__(self, name, state, population, mean_household_inc, area_water, area_land, latitude, longitude):
         self.name = name
         self.state = state
         self.population = population
@@ -10,6 +10,7 @@ class City:
         self.area_water = area_water
         self.area_land = area_land
         self.latitude = latitude
+        self.longitude = longitude
 
 def readCSV(file):
     with open(file, 'r') as csvFile:
