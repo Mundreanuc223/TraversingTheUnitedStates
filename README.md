@@ -1,5 +1,5 @@
-<H1> COP3530 - Project 3 </h1>
-This is the template for Project 3 repositories. It includes all the assignment instructions and documentation to help you use GitHub.
+<H1> Traversing The United States </h1>
+This project compares the functionalities and efficiencies of the following two graph implementations: matrix represenation vs an adjacency-list representation .
 
 <h2> Table of Contents </h2>
 
