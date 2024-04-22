@@ -39,7 +39,7 @@ def parseInput():
 
     while True:
         print("Select which graph implementation to test from the options below:")
-        print("1. Matrix Representation")
+        print("1. Adjacency Matrix Representation")
         print("2. Adjacency List Representation")
         selection = input()
         print()
@@ -87,6 +87,7 @@ def parseInput():
         print("Select an operation from below:")
         print("1. Display city's adjacent vertices")
         print("2. Display the 5 cities most similar to your city")
+        print("3. Display the 5 cities least similar to your city")
         selection = input()
         print()
 
@@ -101,6 +102,24 @@ def parseInput():
         elif(selection == '2'):
             startTime = time.time()
             neighbors = graph.topFive(key)
+            for city in neighbors:
+                print(city.name, city.state, end='\n')
+            print("Execution Time: ", time.time() - startTime, " seconds")
+            print()
+
+            print("Select an option from below:")
+            print("1. Visualize Data")
+            print("2. Input a new city")
+            selection = input()
+            if selection == '1':
+                app.run(port=8001)
+
+            else:
+                continue
+
+        elif (selection == '3'):
+            startTime = time.time()
+            neighbors = graph.bottomFive(key)
             for city in neighbors:
                 print(city.name, city.state, end='\n')
             print("Execution Time: ", time.time() - startTime, " seconds")
