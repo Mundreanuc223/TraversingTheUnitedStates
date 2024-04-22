@@ -62,7 +62,7 @@ def readAdj(cityName,cityState):
         homeOwnership=row['home_ownership'],
         homeValue=row['home_value'],
         medianRent=row['rent_median'],
-        educationPercent=row['rent_median'],
+        educationPercent=row['education_college_or_above'],
         laborPercent=row['labor_force_participation'],
         unemploymentPercent=row['unemployment_rate'],
         whitePercent=row['race_white'],
@@ -117,7 +117,7 @@ def readMatrix():
         homeOwnership=row['home_ownership'],
         homeValue=row['home_value'],
         medianRent=row['rent_median'],
-        educationPercent=row['rent_median'],
+        educationPercent=row['education_college_or_above'],
         laborPercent=row['labor_force_participation'],
         unemploymentPercent=row['unemployment_rate'],
         whitePercent=row['race_white'],
@@ -138,7 +138,6 @@ def readMatrix():
                 graph.insertEdge(city1, city2)
 
 
-readMatrix()
 
 
 
