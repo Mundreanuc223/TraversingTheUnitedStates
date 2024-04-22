@@ -30,7 +30,7 @@ def addBottom5Markers(map, cities):
              1: os.path.join('..', 'resources', 'Icons', 'five.png')}
 
     for i, city in enumerate(cities, start=1): #add the icon to each city in order of similarity
-        cityPopup = folium.Popup(city.name, city.state, city.population, auto_open=True)
+        cityPopup = folium.Popup(city.name,city.state, city.population, auto_open=True)
         folium.Marker(location=[city.latitude, city.longitude], popup=cityPopup,
                       icon=folium.CustomIcon(icon_image=icons[i]), icon_size=(32, 32)).add_to(map)
 
