@@ -1,26 +1,27 @@
 
 class MatrixGraph:
 
-    def __init__(self):
-        self.matrix = [] #2d matrix, size being numCities * numcCities, initialized to 0s
-        self.cityIndex = {} #dictionary that maps each city to its index in the matrix
-        self.indexToCity = {} #dictionary that maps each index to its city
-        self.numCities = 0
+    def __init__(self, numCities):
+        self.numCities = numCities
+        self.matrix = [[-1]*numCities for _ in range(numCities)] # 2d matrix, size being numCities * numcCities, initialized to 0s
+        self.cityIndex = {}  # dictionary that maps each city to its index in the matrix
+        self.indexToCity = {}  # dictionary that maps each index to its city
+
 
     def addCity(self, city):
         index = len(self.cityIndex)
-        self.cityIndex[city.name] = index #maps city to the next open index in the matrix
-        self.indexToCity[index] = city #maps index to city object
-        self.numCities += 1
-
-        self.matrix.append([0] * len(self.matrix))  # adds another row to the matrix
-
-        for i in self.matrix: #adds another column in the matrix
-            i.append(0)
+        self.cityIndex[city.name] = index  # maps city to the next open index in the matrix
+        self.indexToCity[index] = city  # maps index to city object
+        # self.numCities += 1
+        #
+        # self.matrix.append([0] * len(self.matrix))  # adds another row to the matrix
+        #
+        # for i in self.matrix:  # adds another column in the matrix
+        #     i.append(0)
 
     def insertEdge(self, city1, city2):
 
-        if city1.name not in self.cityIndex: #creates city's index if it isn't in the graph yet
+        if city1.name not in self.cityIndex:  # creates city's index if it isn't in the graph yet
             self.addCity(city1)
         if city2.name not in self.cityIndex:
             self.addCity(city2)
@@ -40,12 +41,12 @@ class MatrixGraph:
                 neighbors.append((self.indexToCity[i], self.matrix[cityIndex][i]))
         return neighbors
 
-    #same as similarity calc for adjacency list
+    # same as similarity calc for adjacency list
     def calculateSimilarity(self, city1, city2):
         simScore = 1
         return simScore
 
-    #returns top 5 most similiar cities (as tuple of objects and simscore)
+    # returns top 5 most similiar cities (as tuple of objects and simscore)
     def topFive(self, city):
         temp = self.getAdjacent(city)
         temp.sort(key=lambda x: x[1], reverse=True)
