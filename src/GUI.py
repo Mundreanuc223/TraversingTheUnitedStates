@@ -95,6 +95,7 @@ def parseInput():
         print("Select an operation from below:")
         print("1. Display city's adjacent vertices")
         print("2. Display the 5 cities most similar to your city")
+        print("3. Display the 5 cities least similar to your city")
         selection = input()
         print()
 
