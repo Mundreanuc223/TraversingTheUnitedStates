@@ -22,8 +22,10 @@ The user can continue to input new cities and test these features until they hav
 
 
 <p align="center">
-  <img src="https://github.com/Mundreanuc223/TraversingTheUnitedStates/assets/155108015/f929d44a-45e4-485d-b03f-656a4f5a0b30" />
+  <img src="https://github.com/Mundreanuc223/TraversingTheUnitedStates/assets/155108015/9ae05fd0-1dc5-41c9-b7b6-eda4321f30a1" />
 </p>
+
+
 
 
 
