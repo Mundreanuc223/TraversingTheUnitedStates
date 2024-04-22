@@ -10,7 +10,7 @@ class MatrixGraph:
 
     def addCity(self, city):
         index = len(self.cityIndex)
-        self.cityIndex[city.name] = index  # maps city to the next open index in the matrix
+        self.cityIndex[city.id] = index  # maps city to the next open index in the matrix
         self.indexToCity[index] = city  # maps index to city object
         # self.numCities += 1
         #
