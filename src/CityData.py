@@ -38,10 +38,9 @@ def readAdj():
     graph = AdjacencyListGraph()
     cities = []
     currentPath = os.getcwd()
-    filePath = os.path.join(currentPath, 'src', 'US_CityData.xlsx')
+    filePath = os.path.join(currentPath, 'US_CityData.xlsx')
 
     file = pd.read_excel(filePath)
-    i = 0
 
     for index, row in file.iterrows():
         newCity = City(
@@ -80,10 +79,13 @@ def readAdj():
 
 def readMatrix():
 
-    graph = AdjacencyListGraph()
     cities = []
+    numCities = 0
 
-    file = pd.read_excel('CityData.xlsx')
+    currentPath = os.getcwd()
+    filePath = os.path.join(currentPath, 'US_CityData.xlsx')
+
+    file = pd.read_excel(filePath)
 
     for index, row in file.iterrows():
         newCity = City(
@@ -114,6 +116,12 @@ def readMatrix():
         otherPop=row['race_pacific'])
 
         cities.append(newCity)
+        numCities += 1
+
+    graph = MatrixGraph(numCities)
+
+    for city in cities:
+        graph.addCity(city)
 
 
 
