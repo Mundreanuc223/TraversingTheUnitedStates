@@ -3,7 +3,8 @@ import folium
 import os
 from AdjacencyList import AdjacencyListGraph
 from Matrix import MatrixGraph
-from src.CityData import City
+import CityData
+import time
 
 #Code below is referenced from Folium's Github documentation/user guide and Flask's website/documentation
 
@@ -12,7 +13,6 @@ app = Flask(__name__) #creates application instance
 #Function to add a market at a specific latitude and longitude (pass in an array of the cities similiar cities)
 #References guide on OS module from GeeksforGeeks
 def addTop5Markers(map, cities):
-    currentDir = os.path.dirname(__file__)
     icons = {1: os.path.join('..', 'resources', 'Icons', 'one.png'),
              2: os.path.join('..', 'resources', 'Icons', 'two.png'),
              3: os.path.join('..', 'resources', 'Icons', 'three.png'),
@@ -31,33 +31,77 @@ def map():
 
 #determines what graph type user wants
 def graphSelection():
-    matrix = False
-    retrieved = False
+
     while True:
+        print("Insert the state where the city you want to compare is located:")
+        stateName = input()
+        print()
+
+        print("Insert the name of the city you want to compare:")
+        cityName = input()
+        print()
+
         print("Select which graph implementation to test from the options below:")
         print("1. Matrix Representation")
         print("2. Adjacency List Representation")
         selection = input()
-        print()
 
         if(selection == '1'):
-            matrix = True
-            return matrix
+            print("Loading...")
+            startTime = time.time()
+            CityData.readMatrix(cityName, stateName)
+            print()
+            print("Matrix Graph Execution Time: ", time.time() - startTime, " seconds")
+            print()
+            break
 
-        elif(selection == '2'):
-            return matrix
+        elif (selection == '2'):
+            print("Loading...")
+            startTime = time.time()
+            CityData.readAdj(cityName, stateName)
+            print()
+            print("Adjacency-List Graph Execution Time: ", time.time() - startTime, " seconds")
+            print()
+            break
 
         else:
             print("Invalid input: Please Try Again")
 
-def functionSelection():
-
+def parseInput():
     while True:
-        print("Insert the name of the city you want to compare:")
-        cityName = input()
+        print("Insert the state where the city you want to compare is located:")
+        stateName = input().lower()
         print()
-        print("Select an operation from below:")
-        break
+
+        print("Insert the name of the city you want to compare:")
+        cityName = input().lower()
+        print()
+
+        print("Select which graph implementation to test from the options below:")
+        print("1. Matrix Representation")
+        print("2. Adjacency List Representation")
+        selection = input()
+
+        if (selection == '1'):
+            print("Loading...")
+            print()
+            startTime = time.time()
+            CityData.readMatrix(cityName, stateName)
+            print("Matrix Graph Execution Time: ", time.time() - startTime, " seconds")
+            print()
+            break
+
+        elif (selection == '2'):
+            print("Loading...")
+            print()
+            startTime = time.time()
+            CityData.readAdj(cityName, stateName)
+            print("Adjacency-List Graph Execution Time: ", time.time() - startTime, " seconds")
+            print()
+            break
+
+        else:
+            print("Invalid input: Please Try Again")
 
 @app.route('/')
 
