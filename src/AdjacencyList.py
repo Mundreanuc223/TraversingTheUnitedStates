@@ -3,7 +3,7 @@ class AdjacencyListGraph:
 
     def __init__(self):
         self.adjacencyList = {}
-        self.simThreshold = 0
+        self.simThreshold = 0.75
         self.numCities = 0
         self.cityToObject = {} #dictionary that maps each city name + state appended to its object
 
@@ -28,7 +28,8 @@ class AdjacencyListGraph:
         neighbors = []
         if city.id in self.adjacencyList:
             for neighborTuple in self.adjacencyList[city.id]:
-                neighbors.append(neighborTuple[0])  # Append the city object from the tuple
+                if neighborTuple[1] > self.simThreshold:
+                    neighbors.append(neighborTuple[0])  # Append the city object from the tuple
         return neighbors
 
     def getCity(self, city, state):

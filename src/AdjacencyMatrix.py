@@ -3,7 +3,7 @@ class AdjacencyMatrixGraph:
 
     def __init__(self, numCities):
         self.numCities = numCities
-        self.simThreshold = 0
+        self.simThreshold = 0.75
         self.matrix = [[0]*numCities for _ in range(numCities)] # 2d matrix, size being numCities * numcCities, initialized to 0s
         self.cityIndex = {}  # dictionary that maps each city to its index in the matrix
         self.indexToCity = {}  # dictionary that maps each index to its city
@@ -49,7 +49,7 @@ class AdjacencyMatrixGraph:
         neighbors = []
         index = self.cityIndex[city.id]
         for i in range(self.numCities):
-            if self.matrix[index][i] > 0:
+            if self.matrix[index][i] > self.simThreshold:
                 neighbors.append(self.indexToCity[i])
         return neighbors
 
