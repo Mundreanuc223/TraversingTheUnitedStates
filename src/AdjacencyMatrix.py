@@ -22,7 +22,6 @@ class AdjacencyMatrixGraph:
             self.addCity(city2)
 
         simScore = self.calculateSimilarity(city1, city2)
-        print(simScore)
 
         if simScore > self.simThreshold:
             city1Index = self.cityIndex[city1.id]
@@ -31,13 +30,28 @@ class AdjacencyMatrixGraph:
             self.matrix[city2Index][city1Index] = simScore
 
     # array of city's neighbors (tuple of object and simscore)
-    def getAdjacent(self, city):
+    def getAdjacentSim(self, city): #gets the adjacent with their simscores (used in top 5 function)
         neighbors = []
         index = self.cityIndex[city.id]
         for i in range(self.numCities):
             if self.matrix[index][i] > 0:
                 neighbors.append((self.indexToCity[i], self.matrix[index][i]))
         return neighbors
+
+    def getAdjacent(self, city): #returns all the adjacent cities
+        neighbors = []
+        index = self.cityIndex[city.id]
+        for i in range(self.numCities):
+            if self.matrix[index][i] > 0:
+                neighbors.append(self.indexToCity[i])
+        return neighbors
+
+    def getCity(self, city, state):
+        key = (city + state).lower()
+        if key not in self.cityToObject:
+            return False
+        else:
+            return self.cityToObject[key]
 
     # scales values and finds the difference between them
     def calculateDifference(self, city1Val, city2Val, maxVal):
@@ -102,8 +116,8 @@ class AdjacencyMatrixGraph:
 
     # returns top 5 most similiar cities (as tuple of objects and simscore)
     def topFive(self, city):
-        temp = self.getAdjacent(city)
-        temp.sort(key=lambda x: x[1], reverse=True)
+        temp = self.getAdjacentSim(city)
+        temp.sort(key=lambda x: (x[1],x[0].population), reverse=True)
         five = []
         for idx, city in enumerate(temp):
             five.append(city[0])

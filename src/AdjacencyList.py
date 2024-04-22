@@ -1,4 +1,4 @@
-import multiprocessing
+
 class AdjacencyListGraph:
 
     def __init__(self):
@@ -20,11 +20,6 @@ class AdjacencyListGraph:
                 self.adjacencyList[city1.id] = [(city2, simScore)] #initialize city1 as a key, array containing city2 as its value
                 self.numCities += 1
 
-            if city2.id in self.adjacencyList:
-                self.adjacencyList[city2.id].append((city1, simScore))
-            else:
-                self.adjacencyList[city2.id] = [(city1, simScore)]
-                self.numCities += 1
         else:
             return
 
@@ -109,7 +104,7 @@ class AdjacencyListGraph:
     def topFive(self, city):
         self.adjacencyList[city.id].sort(key=lambda x: (x[1], x[0].population), reverse=True) #sorts by similarity, based on second val of tuple
         five = []
-        i = 1
+        i = 0
         for city in self.adjacencyList[city.id]: #avoids out of range if city has less than 5 similiar cities
             five.append(city[0])
             i += 1

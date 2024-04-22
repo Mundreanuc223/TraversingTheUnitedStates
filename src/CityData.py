@@ -35,16 +35,17 @@ class City:
         self.longitude = longitude
         self.id = id
 
+#read functions are referenced from Panda's documentation and Geeks for Geeks
 def readAdj():
 
     cities = []
     currentPath = os.getcwd()
-    filePath = os.path.join(currentPath, 'src', 'US_CityData.xlsx')
+    filePath = os.path.join(currentPath, 'US_CityData.xlsx')
     file = pd.read_excel(filePath)
     graph = AdjacencyListGraph()
 
     cityComp = -1
-    for index, row in file.iterrows():
+    for index, row in file.iterrows(): #iterates through the excel file and creates a city object for each row
         newCity = City(
         name=row['city'],
         state=row['state_name'],
@@ -73,12 +74,12 @@ def readAdj():
         otherPercent=row['race_other'])
 
         cities.append(newCity)
-        key = (newCity.name+newCity.state).lower()
+        key = (newCity.name+newCity.state).lower() #maps the city to its object
         graph.cityToObject[key] = newCity
 
-    for city in cities:
+    for city in cities: #inserts each city's edges
         for city2 in cities:
-            if city != city2:
+            if city.id != city2.id:
                 graph.insertEdge(city, city2)
 
     return graph
