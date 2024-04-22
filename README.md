@@ -17,8 +17,8 @@ When you first run the program, you will be asked to select between the followin
 The implementation chosen can have significant impacts on the programs runtime, which is why the execution time for each operation is displayed throughout the program.
 
 Once the graph has been constructed (which requires some patience), the user is asked to input a city and the state the city is located in.
-From here, the user can either display all of the selected city's neighboring vertices, or a a list of its top 5 most similiar cities.
-The user can continue to input new cities and test these features until they have found the city they want to visualize. Once a city has been chosen to visualize, a Folium map will display on a local Flask server. This provides an interactive visual of the cities similiar neighbors and provides additional information on each city.
+From here, the user can either display all of the selected city's neighboring vertices, or a a list of its top 5 most/least similar cities.
+The user can continue to input new cities and test these features until they have found the city they want to visualize. Once a city has been chosen to visualize, a Folium map will display on a local Flask server. This provides an interactive visual of the cities similar/dissimilar neighbors and provides additional information on each city.
 
 
 <p align="center">
