@@ -123,10 +123,3 @@ class AdjacencyMatrixGraph:
             five.append(city[0])
             if idx == 4:
                 return five
-
-
-
-
-
-
-

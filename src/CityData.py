@@ -4,7 +4,6 @@ import openpyxl
 from AdjacencyMatrix import AdjacencyMatrixGraph
 from AdjacencyList import AdjacencyListGraph
 
-
 class City:
 
     def __init__(self, name, state, latitude, longitude, population, density, id, medianAge, malePercent, femalePercent,
@@ -136,6 +135,3 @@ def readMatrix():
                 graph.insertEdge(city1, city2)
 
     return graph
-
-
-
