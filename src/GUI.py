@@ -81,12 +81,13 @@ def parseInput():
         print("1. Matrix Representation")
         print("2. Adjacency List Representation")
         selection = input()
+        print()
 
         if (selection == '1'):
             print("Loading...")
             print()
             startTime = time.time()
-            CityData.readMatrix(cityName, stateName)
+            CityData.readMatrix()
             print("Matrix Graph Execution Time: ", time.time() - startTime, " seconds")
             print()
             break

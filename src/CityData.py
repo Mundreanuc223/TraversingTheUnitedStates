@@ -33,15 +33,15 @@ class City:
         self.longitude = longitude
         self.id = id
 
-def readAdj():
+def readAdj(cityName,cityState):
 
-    graph = AdjacencyListGraph()
     cities = []
     currentPath = os.getcwd()
-    filePath = os.path.join(currentPath, 'US_CityData.xlsx')
-
+    filePath = os.path.join(currentPath, 'src', 'US_CityData.xlsx')
     file = pd.read_excel(filePath)
+    graph = AdjacencyListGraph()
 
+    cityComp = -1
     for index, row in file.iterrows():
         newCity = City(
         name=row['city'],
@@ -71,11 +71,21 @@ def readAdj():
         otherPop=row['race_pacific'])
 
         cities.append(newCity)
+        key = (newCity.name+newCity.state).lower()
+        graph.cityToObject[key] = newCity
 
     for city in cities:
         for city2 in cities:
             if city != city2:
-                graph.insertEdge(city,city2)
+                graph.insertEdge(city, city2)
+
+    key = (cityName + cityState).lower()
+    if key not in graph.cityToObject:
+        print("Not in the graph")
+
+    neighbors = graph.topFive(graph.cityToObject[key])
+    for city in neighbors:
+        print(city.name)
 
 def readMatrix():
 
