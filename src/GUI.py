@@ -31,6 +31,9 @@ def map():
     map = folium.Map(max_bounds=True, location=[30, -102], zoom_start=3)  # creates map object that looks over the US
     return map._repr_html_()
 
+@app.route('/')
+def output():
+    return map()
 
 def parseInput():
 
@@ -113,13 +116,3 @@ def parseInput():
             else:
                 continue
 
-
-
-@app.route('/')
-def output():
-    return map()
-
-
-# current selection method, if we have time we can make something fancier that isn't in the command line
-if __name__ == '__main__':
-    app.run(port=8001)
