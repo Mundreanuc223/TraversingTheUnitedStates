@@ -3,7 +3,7 @@ class AdjacencyMatrixGraph:
 
     def __init__(self, numCities):
         self.numCities = numCities
-        self.simThreshold = 0
+        self.simThreshold = 0.80
         self.matrix = [[0]*numCities for _ in range(numCities)] # 2d matrix, size being numCities * numcCities, initialized to 0s
         self.cityIndex = {}  # dictionary that maps each city to its index in the matrix
         self.indexToCity = {}  # dictionary that maps each index to its city
@@ -15,20 +15,19 @@ class AdjacencyMatrixGraph:
         self.indexToCity[index] = city  # maps index to city object
 
     def insertEdge(self, city1, city2):
-
         if city1.id not in self.cityIndex:  # creates city's index if it isn't in the graph yet
             self.addCity(city1)
         if city2.id not in self.cityIndex:
             self.addCity(city2)
 
-        simScore = self.calculateSimilarity(city1, city2)
-        print(simScore)
+        if self.matrix[self.cityIndex[city1.id]][self.cityIndex[city2.id]] == 0:
+            simScore = self.calculateSimilarity(city1, city2)
 
-        if simScore > self.simThreshold:
-            city1Index = self.cityIndex[city1.id]
-            city2Index = self.cityIndex[city2.id]
-            self.matrix[city1Index][city2Index] = simScore
-            self.matrix[city2Index][city1Index] = simScore
+            if simScore > self.simThreshold:
+                city1Index = self.cityIndex[city1.id]
+                city2Index = self.cityIndex[city2.id]
+                self.matrix[city1Index][city2Index] = simScore
+                self.matrix[city2Index][city1Index] = simScore
 
     # array of city's neighbors (tuple of object and simscore)
     def getAdjacent(self, city):
@@ -39,11 +38,19 @@ class AdjacencyMatrixGraph:
                 neighbors.append((self.indexToCity[i], self.matrix[index][i]))
         return neighbors
 
+    def getCity(self, city, state):
+        key = (city + state).lower()
+        if key not in self.cityToObject:
+            return False
+        else:
+            return self.cityToObject[key]
+
     # scales values and finds the difference between them
     def calculateDifference(self, city1Val, city2Val, maxVal):
         x = city1Val / maxVal
         y = city2Val / maxVal
-        return abs(x - y)
+        diff = abs(x-y)
+        return diff
 
     # calculates similarity using root mean squared error (RMSE)
     def calculateSimilarity(self, city1, city2):
