@@ -1,7 +1,4 @@
 from flask import Flask
-from AdjacencyList import AdjacencyListGraph
-from AdjacencyMatrix import AdjacencyMatrixGraph
-import CityData
 import GUI
 
 app = Flask(__name__)  # creates application instance
@@ -13,6 +10,6 @@ def output():
 
 #main file that showcases some of the function/class implementations (can be replaced entirely)
 if __name__ == '__main__':
-    neighbors = GUI.parseInput()
-    mapUS = GUI.createMap(neighbors)
+    paramters = GUI.parseInput() #returns an array, index 0 determines if output is least/most similiar, index 1 are the cities
+    mapUS = GUI.createMap(paramters[0], paramters[1])
     app.run(port=8001)

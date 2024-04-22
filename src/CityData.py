@@ -43,7 +43,6 @@ def readAdj():
     file = pd.read_excel(filePath)
     graph = AdjacencyListGraph()
 
-    cityComp = -1
     for index, row in file.iterrows(): #iterates through the excel file and creates a city object for each row
         newCity = City(
         name=row['city'],
@@ -90,7 +89,7 @@ def readMatrix():
     numCities = 0
 
     currentPath = os.getcwd()
-    filePath = os.path.join(currentPath, 'US_CityData.xlsx')
+    filePath = os.path.join(currentPath, 'src', 'US_CityData.xlsx')
 
     file = pd.read_excel(filePath)
 

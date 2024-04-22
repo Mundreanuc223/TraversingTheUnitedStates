@@ -18,7 +18,7 @@ def addTop5Markers(map, cities):
              5: os.path.join('..', 'resources', 'Icons', 'five.png')}
 
     for i, city in enumerate(cities, start=1): #add the icon to each city in order of similarity
-        cityPopup = folium.Popup(city.name, city.state, city.population, auto_open=True)
+        cityPopup = folium.Popup(city.name + ', ' + city.state, auto_open=True)
         folium.Marker(location=[city.latitude, city.longitude], popup=cityPopup,
                       icon=folium.CustomIcon(icon_image=icons[i]), icon_size=(32, 32)).add_to(map)
 
@@ -30,24 +30,25 @@ def addBottom5Markers(map, cities):
              1: os.path.join('..', 'resources', 'Icons', 'five.png')}
 
     for i, city in enumerate(cities, start=1): #add the icon to each city in order of similarity
-        cityPopup = folium.Popup(city.name,city.state, city.population, auto_open=True)
+        cityPopup = folium.Popup(city.name + ', ' + city.state, auto_open=True)
         folium.Marker(location=[city.latitude, city.longitude], popup=cityPopup,
                       icon=folium.CustomIcon(icon_image=icons[i]), icon_size=(32, 32)).add_to(map)
 
 
 # Function that creates an interactive map using Folium
-def createMap(cities):
+def createMap(order, cities):
     map = folium.Map(max_bounds=True, location=[30, -102], zoom_start=3)  # creates map object that looks over the US
-    addTop5Markers(map, cities)
+    if order == 'top':
+        addTop5Markers(map, cities)
+    elif order == 'bottom':
+        addBottom5Markers(map, cities)
     return map._repr_html_()
-
-
 
 def parseInput():
 
     while True:
         print("Select which graph implementation to test from the options below:")
-        print("1. Matrix Representation")
+        print("1. Adjacency Matrix Representation")
         print("2. Adjacency List Representation")
         selection = input()
         print()
@@ -120,7 +121,7 @@ def parseInput():
             print("2. Input a new city")
             selection = input()
             if selection == '1':
-                return neighbors
+                return ['top', neighbors]
 
             else:
                 continue
@@ -138,7 +139,7 @@ def parseInput():
             print("2. Input a new city")
             selection = input()
             if selection == '1':
-                return neighbors
+                return ['bottom', neighbors]
 
             else:
                 continue
