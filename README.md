@@ -10,7 +10,7 @@ This project compares the functionalities and efficiencies of the following two 
   - Openpyxl
 3. Run the code from the Main file
 
-##Outline of functionalties
+## Outline of functionalties
 When you first run the program, you will be asked to select between the following two different graph implementations:
 -  Adjacency Matrix
 -  Adjacency List
