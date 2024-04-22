@@ -35,7 +35,7 @@ class City:
         self.longitude = longitude
         self.id = id
 
-def readAdj(cityName,cityState):
+def readAdj():
 
     cities = []
     currentPath = os.getcwd()
@@ -62,7 +62,7 @@ def readAdj(cityName,cityState):
         homeOwnership=row['home_ownership'],
         homeValue=row['home_value'],
         medianRent=row['rent_median'],
-        educationPercent=row['education_college_or_above'],
+        educationPercent=row['rent_median'],
         laborPercent=row['labor_force_participation'],
         unemploymentPercent=row['unemployment_rate'],
         whitePercent=row['race_white'],
@@ -81,13 +81,8 @@ def readAdj(cityName,cityState):
             if city != city2:
                 graph.insertEdge(city, city2)
 
-    key = (cityName + cityState).lower()
-    if key not in graph.cityToObject:
-        print("Not in the graph")
+    return graph
 
-    neighbors = graph.topFive(graph.cityToObject[key])
-    for city in neighbors:
-        print(city.name)
 
 def readMatrix():
 
@@ -117,7 +112,7 @@ def readMatrix():
         homeOwnership=row['home_ownership'],
         homeValue=row['home_value'],
         medianRent=row['rent_median'],
-        educationPercent=row['education_college_or_above'],
+        educationPercent=row['rent_median'],
         laborPercent=row['labor_force_participation'],
         unemploymentPercent=row['unemployment_rate'],
         whitePercent=row['race_white'],
@@ -133,12 +128,13 @@ def readMatrix():
     graph = AdjacencyMatrixGraph(numCities)
 
     for city1 in cities:
+        key = (city1.name + city1.state).lower() #maps the city + state to its city object
+        graph.cityToObject[key] = city1
         for city2 in cities:
             if city1 != city2:
                 graph.insertEdge(city1, city2)
 
-
-
+    return graph
 
 
 

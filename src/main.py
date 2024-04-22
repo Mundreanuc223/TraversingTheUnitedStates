@@ -1,6 +1,6 @@
 
 from AdjacencyList import AdjacencyListGraph
-from Matrix import MatrixGraph
+from AdjacencyMatrix import AdjacencyMatrixGraph
 import CityData
 import GUI
 

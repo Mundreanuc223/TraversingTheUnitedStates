@@ -7,6 +7,7 @@ class AdjacencyMatrixGraph:
         self.matrix = [[0]*numCities for _ in range(numCities)] # 2d matrix, size being numCities * numcCities, initialized to 0s
         self.cityIndex = {}  # dictionary that maps each city to its index in the matrix
         self.indexToCity = {}  # dictionary that maps each index to its city
+        self.cityToObject = {}  # dictionary that maps each city name + state appended to its object
 
     def addCity(self, city):
         index = len(self.cityIndex)
