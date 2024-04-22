@@ -21,7 +21,9 @@ From here, the user can either display all of the selected city's neighboring ve
 The user can continue to input new cities and test these features until they have found the city they want to visualize. Once a city has been chosen to visualize, a Folium map will display on a local Flask server. This provides an interactive visual of the cities similiar neighbors and provides additional information on each city.
 
 
+<p align="center">
+  <img src="https://github.com/Mundreanuc223/TraversingTheUnitedStates/assets/155108015/f929d44a-45e4-485d-b03f-656a4f5a0b30" />
+</p>
 
-![gator_plane_1](https://github.com/Mundreanuc223/TraversingTheUnitedStates/assets/155108015/cc45ff16-9c58-4fb5-834b-e52dd9c10a4d)
 
 
