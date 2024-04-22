@@ -1,34 +1,36 @@
 import os
 import pandas as pd
 import openpyxl
-from Matrix import MatrixGraph
+from AdjacencyMatrix import AdjacencyMatrixGraph
 from AdjacencyList import AdjacencyListGraph
+
+
 class City:
 
-    def __init__(self, name, state, latitude, longitude, population, density, id, medianAge, malePop, femalePop,
-                 marriedPop, medianIncome, incomeOverSix, homeOwnership, homeValue, medianRent, education, laborPop, unemployment, whitePop, blackPop, asianPop, nativePop, pacificPop, otherPop):
+    def __init__(self, name, state, latitude, longitude, population, density, id, medianAge, malePercent, femalePercent,
+                 marriedPercent, medianIncome, incomeOverSix, homeOwnership, homeValue, medianRent, educationPercent, laborPercent, unemploymentPercent, whitePercent, blackPercent, asianPercent, nativePercent, pacificPercent, otherPercent):
         self.name = name
         self.state = state
         self.population = population
         self.density = density
         self.medianAge = medianAge
-        self.malePop = malePop
-        self.femalePop = femalePop
-        self.marriedPop = marriedPop
+        self.malePercent = malePercent
+        self.femalePercent = femalePercent
+        self.marriedPercent = marriedPercent
         self.medianIncome = medianIncome
         self.incomeOverSix = incomeOverSix
         self.homeOwnership = homeOwnership
         self.homeValue = homeValue
         self.medianRent = medianRent
-        self.education = education
-        self.laborPop = laborPop
-        self.unemployment = unemployment
-        self.whitePop = whitePop
-        self.blackPop = blackPop
-        self.asianPop = asianPop
-        self.nativePop = nativePop
-        self.pacificPop = pacificPop
-        self.otherPop = otherPop
+        self.educationPercent = educationPercent
+        self.laborPercent = laborPercent
+        self.unemploymentPercent = unemploymentPercent
+        self.whitePercent = whitePercent
+        self.blackPercent = blackPercent
+        self.asianPercent = asianPercent
+        self.nativePercent = nativePercent
+        self.pacificPercent = pacificPercent
+        self.otherPercent = otherPercent
         self.latitude = latitude
         self.longitude = longitude
         self.id = id
@@ -52,23 +54,23 @@ def readAdj(cityName,cityState):
         density=row['density'],
         id=row['id'],
         medianAge=row['age_median'],
-        malePop=row['male'],
-        femalePop=row['female'],
-        marriedPop=row['married'],
+        malePercent=row['male'],
+        femalePercent=row['female'],
+        marriedPercent=row['married'],
         medianIncome=row['income_household_median'],
         incomeOverSix=row['income_household_six_figure'],
         homeOwnership=row['home_ownership'],
         homeValue=row['home_value'],
         medianRent=row['rent_median'],
-        education=row['rent_median'],
-        laborPop=row['labor_force_participation'],
-        unemployment=row['unemployment_rate'],
-        whitePop=row['race_white'],
-        blackPop=row['race_black'],
-        asianPop=row['race_asian'],
-        nativePop=row['race_native'],
-        pacificPop=row['race_pacific'],
-        otherPop=row['race_pacific'])
+        educationPercent=row['rent_median'],
+        laborPercent=row['labor_force_participation'],
+        unemploymentPercent=row['unemployment_rate'],
+        whitePercent=row['race_white'],
+        blackPercent=row['race_black'],
+        asianPercent=row['race_asian'],
+        nativePercent=row['race_native'],
+        pacificPercent=row['race_pacific'],
+        otherPercent=row['race_other'])
 
         cities.append(newCity)
         key = (newCity.name+newCity.state).lower()
@@ -107,38 +109,36 @@ def readMatrix():
         density=row['density'],
         id=row['id'],
         medianAge=row['age_median'],
-        malePop=row['male'],
-        femalePop=row['female'],
-        marriedPop=row['married'],
+        malePercent=row['male'],
+        femalePercent=row['female'],
+        marriedPercent=row['married'],
         medianIncome=row['income_household_median'],
         incomeOverSix=row['income_household_six_figure'],
         homeOwnership=row['home_ownership'],
         homeValue=row['home_value'],
         medianRent=row['rent_median'],
-        education=row['rent_median'],
-        laborPop=row['labor_force_participation'],
-        unemployment=row['unemployment_rate'],
-        whitePop=row['race_white'],
-        blackPop=row['race_black'],
-        asianPop=row['race_asian'],
-        nativePop=row['race_native'],
-        pacificPop=row['race_pacific'],
-        otherPop=row['race_pacific'])
+        educationPercent=row['rent_median'],
+        laborPercent=row['labor_force_participation'],
+        unemploymentPercent=row['unemployment_rate'],
+        whitePercent=row['race_white'],
+        blackPercent=row['race_black'],
+        asianPercent=row['race_asian'],
+        nativePercent=row['race_native'],
+        pacificPercent=row['race_pacific'],
+        otherPercent=row['race_other'])
 
         cities.append(newCity)
         numCities += 1
 
-    graph = MatrixGraph(numCities)
+    graph = AdjacencyMatrixGraph(numCities)
 
-    for city in cities:
-        graph.addCity(city)
-
-
-
-
+    for city1 in cities:
+        for city2 in cities:
+            if city1 != city2:
+                graph.insertEdge(city1, city2)
 
 
-
+readMatrix()
 
 
 
