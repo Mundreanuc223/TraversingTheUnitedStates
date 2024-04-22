@@ -72,16 +72,11 @@ def readAdj():
         otherPop=row['race_pacific'])
 
         cities.append(newCity)
-        i+= 1
 
-        if i == 100:
-            for city1 in cities:
-               for city2 in cities:
-                   if city1.id != city2.id:
-                       graph.insertEdge(city1, city2)
-            help = graph.getAdjacent(cities[0])
-            for j in help:
-                print(j[0].name)
+    for city in cities:
+        for city2 in cities:
+            if city != city2:
+                graph.insertEdge(city,city2)
 
 def readMatrix():
 
