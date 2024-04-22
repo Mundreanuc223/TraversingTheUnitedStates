@@ -3,7 +3,8 @@ class MatrixGraph:
 
     def __init__(self, numCities):
         self.numCities = numCities
-        self.matrix = [[-1]*numCities for _ in range(numCities)] # 2d matrix, size being numCities * numcCities, initialized to 0s
+        self.simThreshold = 0
+        self.matrix = [[0]*numCities for _ in range(numCities)] # 2d matrix, size being numCities * numcCities, initialized to 0s
         self.cityIndex = {}  # dictionary that maps each city to its index in the matrix
         self.indexToCity = {}  # dictionary that maps each index to its city
 
@@ -21,21 +22,23 @@ class MatrixGraph:
 
     def insertEdge(self, city1, city2):
 
-        if city1.name not in self.cityIndex:  # creates city's index if it isn't in the graph yet
-            self.addCity(city1)
-        if city2.name not in self.cityIndex:
-            self.addCity(city2)
+        # if city1.name not in self.cityIndex:  # creates city's index if it isn't in the graph yet
+        #     self.addCity(city1)
+        # if city2.name not in self.cityIndex:
+        #     self.addCity(city2)
 
         simScore = self.calculateSimilarity(city1, city2)
-        city1Index = self.cityIndex[city1.name]
-        city2Index = self.cityIndex[city2.name]
-        self.matrix[city1Index][city2Index] = simScore
-        self.matrix[city2Index][city1Index] = simScore
+
+        if simScore > self.simThreshold:
+            city1Index = self.cityIndex[city1.id]
+            city2Index = self.cityIndex[city2.id]
+            self.matrix[city1Index][city2Index] = simScore
+            self.matrix[city2Index][city1Index] = simScore
 
     # array of city's neighbors (tuple of object and simscore)
     def getAdjacent(self, city):
         neighbors = []
-        cityIndex = self.cityIndex[city.name]
+        cityIndex = self.cityIndex[city.id]
         for i in range(len(self.cityIndex)):
             if self.matrix[cityIndex][i] > 0:
                 neighbors.append((self.indexToCity[i], self.matrix[cityIndex][i]))
