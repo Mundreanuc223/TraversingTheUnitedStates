@@ -123,3 +123,21 @@ def parseInput():
 
             else:
                 continue
+
+        elif (selection == '3'):
+            startTime = time.time()
+            neighbors = graph.bottomFive(key)
+            for city in neighbors:
+                print(city.name + ',', city.state, end='\n')
+            print("Execution Time: ", time.time() - startTime, " seconds")
+            print()
+
+            print("Select an option from below:")
+            print("1. Visualize Data")
+            print("2. Input a new city")
+            selection = input()
+            if selection == '1':
+                return neighbors
+
+            else:
+                continue

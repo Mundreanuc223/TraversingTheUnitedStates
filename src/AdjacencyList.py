@@ -111,4 +111,14 @@ class AdjacencyListGraph:
             if i == 5:
                 return five
 
+    #returns an array of the top 5 least similar cities (as tuple of object and simscore)
+    def bottomFive(self, city):
+        self.adjacencyList[city.id].sort(key=lambda x: (x[1], x[0].population), reverse=False) #sorts by similarity, based on second val of tuple
+        five = []
+        i = 0
+        for city in self.adjacencyList[city.id]: #avoids out of range if city has less than 5 similiar cities
+            five.append(city[0])
+            i += 1
+            if i == 5:
+                return five
 

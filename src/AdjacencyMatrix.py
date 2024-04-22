@@ -123,3 +123,12 @@ class AdjacencyMatrixGraph:
             five.append(city[0])
             if idx == 4:
                 return five
+
+    def bottomFive(self, city):
+        temp = self.getAdjacentSim(city)
+        temp.sort(key=lambda x: x[1], reverse=False)
+        five = []
+        for idx, city in enumerate(temp):
+            five.append(city[0])
+            if idx == 4:
+                return five
